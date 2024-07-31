@@ -1,9 +1,30 @@
+const seaColors = {
+  //50: "#f5f8f8",
+  //50: "#dbe4e4",
+  //50: "#d3dede",
+  //50: "#edf1f1",
+  //50: "#e2e9e9",
+  //50: "#e3eeec",
+  50: "#e7f0ee",
+  100: "#ddeae8",
+  200: "#bad5d3",
+  300: "#90b8b6",
+  400: "#689998",
+  500: "#4b7979",
+  600: "#3d6364",
+  700: "#335252",
+  800: "#2c4243",
+  900: "#283839",
+  950: "#132020",
+};
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
+        blue: seaColors,
         gray: {
           50: "#f7f7f7",
           100: "#f0f0f0",

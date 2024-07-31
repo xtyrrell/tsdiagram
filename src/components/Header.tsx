@@ -1,5 +1,12 @@
 import { memo } from "react";
-import { Share1Icon, GearIcon, ArrowRightIcon, ArrowLeftIcon, FilePlusIcon } from "@radix-ui/react-icons";
+import {
+  Share1Icon,
+  GearIcon,
+  ArrowRightIcon,
+  ArrowLeftIcon,
+  FilePlusIcon,
+  RocketIcon,
+} from "@radix-ui/react-icons";
 import { useUserOptions } from "../stores/user-options";
 import { documentsStore } from "../stores/documents";
 import classNames from "classnames";
@@ -8,9 +15,10 @@ import { useStore } from "statelift";
 type HeaderProps = {
   onPreferencesClick?: () => void;
   onShareClick?: () => void;
+  onDeployClick?: () => void;
 };
 
-export const Header = memo(({ onPreferencesClick, onShareClick }: HeaderProps) => {
+export const Header = memo(({ onPreferencesClick, onShareClick, onDeployClick }: HeaderProps) => {
   const options = useUserOptions();
   const documentTitle = useStore(documentsStore, (state) => state.currentDocument.title);
 
@@ -39,7 +47,7 @@ export const Header = memo(({ onPreferencesClick, onShareClick }: HeaderProps) =
           })}
         >
           <div className="flex gap-2 justify-between items-center">
-            <span className="font-bold leading-none">Documents</span>
+            <span className="font-bold leading-none">Your forms</span>
             <button
               className="flex justify-center items-center w-7 h-7 rounded focus:outline-none hover:bg-gray-900/20"
               onClick={handleNewDocumentClick}
@@ -64,18 +72,18 @@ export const Header = memo(({ onPreferencesClick, onShareClick }: HeaderProps) =
 
           {/* logo */}
           <div className="hidden items-center text-lg font-bold leading-none sm:flex">
-            <span className="py-1 px-0.5 mr-0.5 rounded" style={{ background: "#3178c6" }}>
+            {/* <span className="py-1 px-0.5 mr-0.5 rounded" style={{ background: "#3178c6" }}>
               TS
-            </span>
-            <span>Diagram</span>
-            <iframe
+            </span> */}
+            <span>Build</span>
+            {/* <iframe
               className="hidden ml-4 opacity-20 sm:block hover:opacity-100"
               height="20"
               sandbox="allow-scripts allow-popups"
               src="https://ghbtns.com/github-btn.html?user=3rd&repo=tsdiagram&type=star&count=true"
               title="GitHub"
               width="100"
-            />
+            /> */}
           </div>
         </div>
 
@@ -92,7 +100,7 @@ export const Header = memo(({ onPreferencesClick, onShareClick }: HeaderProps) =
         <div className="flex gap-2 items-center">
           {/* share */}
           <button
-            className="flex gap-1 items-center py-1.5 px-2 text-sm leading-none rounded shadow-sm bg-white/10 hover:bg-white/20"
+            className="flex gap-1 items-center py-1.5 px-2 text-sm leading-none rounded shadow-sm hover:bg-white/20"
             onClick={onShareClick}
           >
             <Share1Icon /> Share
@@ -100,10 +108,18 @@ export const Header = memo(({ onPreferencesClick, onShareClick }: HeaderProps) =
 
           {/* preferences */}
           <button
-            className="flex gap-1 items-center py-1.5 px-2 text-sm leading-none rounded shadow-sm bg-white/10 hover:bg-white/20"
+            className="flex gap-1 items-center py-1.5 px-2 text-sm leading-none rounded shadow-sm hover:bg-white/20"
             onClick={onPreferencesClick}
           >
             <GearIcon /> Preferences
+          </button>
+
+          {/* deploy */}
+          <button
+            className="flex gap-1 items-center py-1.5 px-2 text-sm leading-none rounded shadow-sm bg-white/10 hover:bg-white/20"
+            onClick={onDeployClick}
+          >
+            <RocketIcon /> Deploy
           </button>
         </div>
       </div>
