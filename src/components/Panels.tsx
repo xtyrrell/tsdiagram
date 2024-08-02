@@ -19,17 +19,11 @@ export const Panels = ({ editorChildren, rendererChildren }: PanelsProps) => {
   const direction = isMobile ? "vertical" : options.panels.splitDirection;
   const isVertical = direction === "vertical";
 
-  const textEditorPanelRef = useRef<ImperativePanelHandle>(null);
-
   const panelGroupMembers = useMemo(() => {
     const members = [
       <Panel
-        ref={textEditorPanelRef}
         key="panel-editor"
         defaultSize={isMobile ? mobileCodePanelSizePercentage : defaultCodePanelSizePercentage}
-        collapsible
-        collapsedSize={10}
-        onCollapse={console.log}
         id="editor"
         order={isVertical ? 1 : 0}
       >
@@ -37,11 +31,6 @@ export const Panels = ({ editorChildren, rendererChildren }: PanelsProps) => {
       </Panel>,
       <PanelResizeHandle
         key="panel-resize-handle"
-        onClick={() =>
-          textEditorPanelRef.current?.isCollapsed()
-            ? textEditorPanelRef.current?.expand()
-            : textEditorPanelRef.current?.collapse()
-        }
         className={classNames(
           isVertical ? "h-1.5" : "w-1.5",
           { "bg-gray-600": options.renderer.theme === "dark" },
